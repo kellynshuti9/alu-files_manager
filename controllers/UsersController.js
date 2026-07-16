@@ -24,7 +24,8 @@ class UsersController {
       const hashedpwd = sha1(password);
       const result = await dbClient.db.collection('users').insertOne({ email, password: hashedpwd });
 
-      const user = { _id: result.insertedId, email };
+      // CHANGE THIS LINE - use "id" not "_id"
+      const user = { id: result.insertedId, email };
       return res.status(201).json(user);
     } catch (error) {
       console.error('Error in postNew:', error);
